@@ -24,6 +24,6 @@ setup(
     version = "0.0.1",
     author = "eliyas",
     author_email = "eliyaschozhakkad@gmail.com",
-    pacakages = find_packages(),
+    packages = find_packages(),
     install_requires = get_requirements(),#['pymongo==4.2.0'],
 )
