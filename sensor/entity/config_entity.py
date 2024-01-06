@@ -37,7 +37,7 @@ class DataValidationConfig:
         self.data_validation_dir:str = os.path.join(
             training_pipeline_config.artifact_dir,training_pipeline.DATA_VALIDATION_DIR_NAME)
         self.valid_data_dir:str = os.path.join(
-            self.data_validation_dir,training_pipeline.DATA_VALIDATION_DIR_NAME)
+            self.data_validation_dir,training_pipeline.DATA_VALIDATION_VALID_DIR)
         self.invalid_data_dir:str = os.path.join(
             self.data_validation_dir,training_pipeline.DATA_VALIDATION_INVALID_DIR
         )
