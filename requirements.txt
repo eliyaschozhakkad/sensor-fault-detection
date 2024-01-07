@@ -3,4 +3,6 @@ certifi
 scikit-learn==1.1.3
 PyYAML
 scipy
+imblearn
+dill
 -e .
