@@ -15,7 +15,7 @@ from sensor.logger import logging
 
 
 class TrainPipeline:
-
+    is_pipeline_running = False
     def __init__(self):
         self.training_pipeline_config = TrainingPipelineConfig()
         
@@ -101,6 +101,7 @@ class TrainPipeline:
     def run_pipeline(self):
 
         try:
+            TrainingPipelineConfig.is_pipeline_running = True
             data_ingestion_artifact:DataIngestionConfig = self.start_data_ingestion()
             data_validaiton_artifact:DataValidationArtifact = self.start_data_validation(data_ingestion_artifact= data_ingestion_artifact)
             data_transformation_artifact:DataTransformationArtifact = self.start_data_transformation(data_validaiton_artifact) 
@@ -110,8 +111,9 @@ class TrainPipeline:
             if not model_eval_artifact.is_model_accepted:
                 raise Exception("Trained model is not better  than the best model")
             model_pusher_artifact:ModelPusherArtifact = self.start_model_pusher(model_eval_artifact = model_eval_artifact)
-            
+            TrainingPipelineConfig.is_pipeline_running = False
 
         except Exception as e:
+            TrainingPipelineConfig.is_pipeline_running = False
             raise SensorException(e,sys)
     
