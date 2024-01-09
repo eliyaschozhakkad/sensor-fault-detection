@@ -4,6 +4,12 @@ from sensor.logger import logging
 import sys,os
 from sensor.pipeline.training_pipeline import TrainPipeline
 
+from fastapi import FastAPI
+from sensor.constant.application import APP_HOST,APP_PORT
+from starlette.responses import RedirectResponse
+from uvicorn import run as app_run
+from fastapi.responses import Response
+
 
 
 if __name__ == '__main__':

@@ -62,18 +62,23 @@ class DataTransformation:
             train_df = DataTransformation.read_data(self.data_validation_artifact.valid_train_file_path)
             test_df = DataTransformation.read_data(self.data_validation_artifact.valid_test_file_path)
             preprocessor = self.get_data_transformer_object()
+            logging.info(f"train_df:{train_df}")
             
 
             #training dataframe
             input_feature_train_df = train_df.drop(columns = [TARGET_COLUMN], axis =1)
+            logging.info(f"input_feature_train_df:{input_feature_train_df}")
             target_feature_train_df = train_df[TARGET_COLUMN]
+            logging.info(f"target_feature_train_df:{target_feature_train_df}")
             target_feature_train_df = target_feature_train_df.replace(TargetValueMapping().to_dict())
+            logging.info(f"target_feature_train_df :{target_feature_train_df}")
             logging.info("Obtained train input and target features")
 
             #testing dataframe
             input_feature_test_df = test_df.drop(columns = [TARGET_COLUMN], axis =1)
             target_feature_test_df = test_df[TARGET_COLUMN]
             target_feature_test_df = target_feature_test_df.replace(TargetValueMapping().to_dict())
+            logging.info(f"target_feature_test_df:{target_feature_test_df}")
             logging.info("Obtained test input and target features")
             
             #Preprocessor object
@@ -99,6 +104,7 @@ class DataTransformation:
 
             #Concatinating input and target array
             train_arr = np.c_[input_feature_train_final,np.array(target_feature_train_final)]
+            logging.info(f"Transformde train_arr:{train_arr}")
             test_arr = np.c_[input_feature_test_final,np.array(target_feature_test_final)]
 
             #Save numpy array

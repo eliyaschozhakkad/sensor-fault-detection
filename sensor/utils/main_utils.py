@@ -68,8 +68,8 @@ def load_object(file_path:str) -> object:
         if not os.path.exists(file_path):
             raise Exception(f"The file path:{file_path} not found")
         with open(file_path,"rb") as file_obj:
-            dill.load(file_obj)
-            return dill
+            obj = dill.load(file_obj)
+            return obj
     except Exception as e:
         raise SensorException(e,sys)
     

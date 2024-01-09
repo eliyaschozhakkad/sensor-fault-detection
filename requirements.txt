@@ -6,5 +6,6 @@ scipy
 imblearn
 dill
 xgboost
-
+fastapi
+uvicorn
 -e .
